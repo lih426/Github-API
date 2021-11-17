@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  mongodb:
+    image : mongo
+    container_name: mongodb-csu33012
+    environment:
+      - PUID=1000
+      - PGID=1000
+      # volumes:
+      - ~/:/data/db  # you need to mondify this
+    ports:
+      - 27017:27017
+    restart: unless-stopped
