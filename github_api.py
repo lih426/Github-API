@@ -5,12 +5,12 @@ from github import Github
 from pprint import pprint
 
 # personal access token
-API_KEY = "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"
+API_KEY = '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'
 
 # github username
 username = "lih426"
 
-# pygithub object
+# init pygithub object
 g = Github(API_KEY)
 user = g.get_user(username)
 
@@ -35,6 +35,6 @@ print("------------------------------")
 for repo in user.get_repos():
     count =  count + 1
     if repo is not None:
-        print("Repository No." + "{count}")
+        print(f"Repository No.{count}")
         printRepo(repo)
         print("------------------------------")
