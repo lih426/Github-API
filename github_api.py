@@ -5,14 +5,14 @@ from github import Github
 from pprint import pprint
 
 # asks user for personal access token
-api_key = input("Enter your GitHub personal access token:")
+api_key = input("Enter your GitHub personal access token:\n")
 
 # init pygithub object
 g = Github(api_key)
 
 # prints all repositories of given user object
 def printAllRepos(user):
-    print("")
+    print(f"\nName of User: {user.name}")
     count = 0
     print("------------------------------")
     for repo in user.get_repos():
@@ -41,7 +41,6 @@ def getRepoCommits(repo):
 
 # asks for username, prints all repositories
 while True:
-    username = input("Enter GitHub usrname:")
+    username = input("Enter GitHub usrname:\n")
     user = g.get_user(username)
-    print(f"\nGitHub username: {username}")
     printAllRepos(user)
