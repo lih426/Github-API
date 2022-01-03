@@ -4,19 +4,15 @@ import base64
 from github import Github
 from pprint import pprint
 
-# personal access token
+# asks user for personal access token
 api_key = input("Enter your GitHub personal access token:")
 
 # init pygithub object
 g = Github(api_key)
 
-# github username
-username = "lih426"
-
-
-user = g.get_user(username)
-
+# prints all repositories of given user object
 def printAllRepos(user):
+    print("")
     count = 0
     print("------------------------------")
     for repo in user.get_repos():
@@ -26,6 +22,7 @@ def printAllRepos(user):
             printRepo(repo)
             print("------------------------------")
 
+# prints information of a repository
 def printRepo(repo):
     print("Repo name:", repo.full_name)
     print("Time created:", repo.created_at)
@@ -33,7 +30,7 @@ def printRepo(repo):
     print("Stars:", repo.stargazers_count)
     getRepoCommits(repo)
    
-
+# prints number of commits to a repository
 def getRepoCommits(repo):
     try:
         if repo.get_commits() is not None:
@@ -42,7 +39,9 @@ def getRepoCommits(repo):
     except:
         print("Number of commits: 0")
 
+# asks for username, prints all repositories
 while True:
     username = input("Enter GitHub usrname:")
     user = g.get_user(username)
+    print(f"\nGitHub username: {username}")
     printAllRepos(user)
