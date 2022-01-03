@@ -4,20 +4,27 @@ import base64
 from github import Github
 from pprint import pprint
 
-import os
-from dotenv import load_dotenv
-# take environment variables from .env
-load_dotenv()
-
 # personal access token
-API_KEY = os.getenv("API_KEY")
+api_key = input("Enter your GitHub personal access token:")
+
+# init pygithub object
+g = Github(api_key)
 
 # github username
 username = "lih426"
 
-# init pygithub object
-g = Github(API_KEY)
+
 user = g.get_user(username)
+
+def printAllRepos(user):
+    count = 0
+    print("------------------------------")
+    for repo in user.get_repos():
+        count =  count + 1
+        if repo is not None:
+            print(f"Repository No.{count}")
+            printRepo(repo)
+            print("------------------------------")
 
 def printRepo(repo):
     print("Repo name:", repo.full_name)
@@ -35,11 +42,7 @@ def getRepoCommits(repo):
     except:
         print("Number of commits: 0")
 
-count = 0
-print("------------------------------")
-for repo in user.get_repos():
-    count =  count + 1
-    if repo is not None:
-        print(f"Repository No.{count}")
-        printRepo(repo)
-        print("------------------------------")
+while True:
+    username = input("Enter GitHub usrname:")
+    user = g.get_user(username)
+    printAllRepos(user)
