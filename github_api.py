@@ -3,16 +3,15 @@ from pprint import pprint
 import base64
 from github import Github
 from pprint import pprint
-import config
+
+# personal access token
+API_KEY = "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"
 
 # github username
 username = "lih426"
 
-#personal access token
-token = '{config.api_key}'
-
 # pygithub object
-g = Github(token)
+g = Github(API_KEY)
 user = g.get_user(username)
 
 def printRepo(repo):
