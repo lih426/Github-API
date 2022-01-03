@@ -3,12 +3,13 @@ from pprint import pprint
 import base64
 from github import Github
 from pprint import pprint
+import config
 
 # github username
 username = "lih426"
 
 #personal access token
-token = "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"
+token = '{config.api_key}'
 
 # pygithub object
 g = Github(token)
@@ -35,6 +36,6 @@ print("------------------------------")
 for repo in user.get_repos():
     count =  count + 1
     if repo is not None:
-        print("Repository No." + f"{count}")
+        print("Repository No." + "{count}")
         printRepo(repo)
         print("------------------------------")
